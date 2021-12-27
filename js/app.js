@@ -44,7 +44,9 @@ const sortBtn = document.querySelector(".sort-btn");
 
 const lableTimer = document.querySelector(".timer");
 
+// Calculate and Display Movements Day
 const calcDisplayMovDays = function (date, locale) {
+  // Calculate Passed days til now
   const calcPassedDays = (day1, day2) =>
     Math.round(Math.abs(day1 - day2) / (1000 * 60 * 60 * 24));
   const passedDays = calcPassedDays(new Date(), date);
@@ -56,6 +58,7 @@ const calcDisplayMovDays = function (date, locale) {
   }
 };
 
+// Formating the Currencies
 const formattedCurrency = function (value, locale, currency) {
   return new Intl.NumberFormat(locale, {
     style: "currency",
@@ -63,11 +66,15 @@ const formattedCurrency = function (value, locale, currency) {
   }).format(value);
 };
 
+// Display movements
 const displayMovements = function (acc, sort = false) {
+  // reset movement's container (parent)
   movementsContainer.innerHTML = "";
   const movs = sort
     ? acc.movements.slice().sort((a, b) => a - b)
     : acc.movements;
+
+  // Is deposit or no ?
   movs.forEach((mov, i) => {
     const type = mov > 0 ? "deposit" : "withdraw";
 
@@ -77,6 +84,7 @@ const displayMovements = function (acc, sort = false) {
 
     const formattedMov = formattedCurrency(mov, acc.locale, acc.currency);
 
+    // Each movement component
     const html = `
       <div class="left-history-content">
           <div class="his-content-left">
@@ -89,10 +97,13 @@ const displayMovements = function (acc, sort = false) {
           <p class="n-money">${formattedMov}</p>
       </div>
     `;
+
+    // adding movement component to the DOM
     movementsContainer.insertAdjacentHTML("afterbegin", html);
   });
 };
 
+// Calculate and Displat balance
 const calcDisplayBalance = function (acc) {
   acc.balance = acc.movements.reduce((temp, mov) => (temp += mov), 0);
   totalBalance.textContent = `${formattedCurrency(
@@ -102,7 +113,10 @@ const calcDisplayBalance = function (acc) {
   )}`;
 };
 
+// Calculate and Displat summary
 const calcDisplaySummary = function (acc) {
+
+  // Calculate statistics
   const income = acc.movements
     .filter((mov) => mov > 0)
     .reduce((temp, deposit) => (temp += deposit));
@@ -127,12 +141,14 @@ const calcDisplaySummary = function (acc) {
   )}`;
 };
 
+//Updating UserInterface
 const updateUI = function (acc) {
   displayMovements(acc);
   calcDisplayBalance(acc);
   calcDisplaySummary(acc);
 };
 
+// a Timer for loging out
 const logoutTimer = function () {
   let time = 10 * 60; // In SEC (10m)
   const tick = function () {
