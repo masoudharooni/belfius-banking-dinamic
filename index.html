@@ -47,10 +47,18 @@
         <!-- SIGN UP -->
         <section class="signup hidden">
           <form>
-            <input type="text" placeholder="name" />
+            <input type="email" placeholder="Email" />
             <input type="text" placeholder="username" />
             <input type="password" placeholder="password" />
             <input type="password" placeholder="check password" />
+            <div class="selection-menu">
+              <h5 style="display: inline; color: rgb(97, 5, 5);">Currency :</h5>
+              <select name="currencies" id="currencies" style="display: inline;">
+                <option value="USD">USD$</option>
+                <option value="EUR">EUR </option>
+                <option value="IRR">IRR</option>
+              </select>
+            </div>
           </form>
           <section class="btn-container">
             <button class="btn btn-primary second-signup-btn">SignUp</button>
@@ -76,9 +84,7 @@
         <section class="panel-about">
           <div class="left-about">
             <h3>Current Balance</h3>
-            <h5>
-              As of <span class="date">2021/03/07</span>
-            </h5>
+            <h5>As of <span class="date">2021/03/07</span></h5>
           </div>
           <h2 class="right-about">2,542.00 €</h2>
         </section>
