@@ -262,7 +262,7 @@ transferBtn.addEventListener("click", (e) => {
 requestBtn.addEventListener("click", (e) => {
   e.preventDefault();
   const amount = Math.floor(reqInputAmount.value);
-  // It causes a ERROR - FIXME
+  // It causes an ERROR - FIXME
   /* const loanRole = currentAcc.movements.some((mov) => mov >= amount * 0.1); */
   const checkLoan = function () {
     if (amount > 0 && loanRole) {
