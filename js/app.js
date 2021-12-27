@@ -262,7 +262,8 @@ transferBtn.addEventListener("click", (e) => {
 requestBtn.addEventListener("click", (e) => {
   e.preventDefault();
   const amount = Math.floor(reqInputAmount.value);
-  const loanRole = currentAcc.movements.some((mov) => mov >= amount * 0.1);
+  // It causes a ERROR - FIXME
+  /* const loanRole = currentAcc.movements.some((mov) => mov >= amount * 0.1); */
   const checkLoan = function () {
     if (amount > 0 && loanRole) {
       const msg = `Requested loan \" ${formattedCurrency(
